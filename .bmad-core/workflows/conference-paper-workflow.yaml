@@ -1,0 +1,284 @@
+workflow:
+  id: conference-paper-workflow
+  name: Conference Paper Writing Workflow
+  version: 1.0
+  description: End-to-end workflow for producing high-quality conference papers
+  type: sequential-with-iterations
+
+metadata:
+  estimated_duration: 2-4 weeks
+  team_required: team-paper-writing
+  deliverable: Conference-ready paper
+
+phases:
+  - phase-1:
+      name: Research Ideation
+      duration: 2-3 days
+      lead_agent: researcher
+      description: Generate and validate research ideas
+
+      steps:
+        - id: topic-exploration
+          agent: researcher
+          task: research-ideation
+          inputs:
+            - topic_area
+            - conference_target
+          outputs:
+            - research_questions
+            - feasibility_assessment
+
+        - id: data-analysis
+          agent: analyst
+          task: analyze_data_availability
+          condition: Data-driven research
+          inputs:
+            - research_questions
+          outputs:
+            - data_insights
+            - feasibility_update
+
+        - id: finalize-direction
+          agent: researcher
+          task: finalize_research_direction
+          inputs:
+            - research_questions
+            - feasibility_assessment
+            - data_insights
+          outputs:
+            - final_research_proposal
+
+  - phase-2:
+      name: Paper Structure Design
+      duration: 1 day
+      lead_agent: paper-expert
+      description: Design optimal paper structure
+
+      steps:
+        - id: structure-planning
+          agent: paper-expert
+          task: paper-structure-design
+          inputs:
+            - final_research_proposal
+            - conference_requirements
+          outputs:
+            - paper_outline
+            - section_allocations
+
+        - id: architecture-input
+          agent: architect
+          task: review_structure
+          condition: System architecture component
+          inputs:
+            - paper_outline
+          outputs:
+            - architecture_feedback
+
+  - phase-3:
+      name: Content Creation
+      duration: 5-10 days
+      lead_agent: writer
+      description: Write paper sections iteratively
+
+      steps:
+        - id: write-introduction
+          agent: writer
+          task: academic-writing
+          inputs:
+            - section: introduction
+            - outline: paper_outline
+          outputs:
+            - introduction_draft
+
+        - id: write-related-work
+          agent: researcher
+          task: write_related_work
+          inputs:
+            - research_area
+            - paper_outline
+          outputs:
+            - related_work_draft
+
+        - id: write-method
+          agent: writer
+          task: academic-writing
+          collaborates_with: [researcher, dev]
+          inputs:
+            - section: method
+            - technical_details
+          outputs:
+            - method_draft
+
+        - id: write-experiments
+          agent: writer
+          task: academic-writing
+          collaborates_with: [researcher, analyst]
+          inputs:
+            - section: experiments
+            - results_data
+          outputs:
+            - experiments_draft
+
+        - id: write-discussion
+          agent: writer
+          task: academic-writing
+          inputs:
+            - section: discussion
+            - results_analysis
+          outputs:
+            - discussion_draft
+
+        - id: write-conclusion
+          agent: writer
+          task: academic-writing
+          inputs:
+            - section: conclusion
+            - key_findings
+          outputs:
+            - conclusion_draft
+
+  - phase-4:
+      name: Review and Refinement
+      duration: 3-5 days
+      lead_agent: reviewer
+      description: Iterative review and improvement
+
+      steps:
+        - id: technical-review
+          agent: reviewer
+          task: content-review
+          inputs:
+            - full_draft
+            - review_type: technical
+          outputs:
+            - technical_feedback
+
+        - id: clarity-review
+          agent: reviewer
+          task: content-review
+          inputs:
+            - full_draft
+            - review_type: clarity
+          outputs:
+            - clarity_feedback
+
+        - id: implement-feedback
+          agent: writer
+          task: revise_content
+          inputs:
+            - technical_feedback
+            - clarity_feedback
+          outputs:
+            - revised_draft
+
+        - id: structure-optimization
+          agent: paper-expert
+          task: optimize-flow
+          inputs:
+            - revised_draft
+          outputs:
+            - flow_improvements
+
+  - phase-5:
+      name: Final Polish
+      duration: 1-2 days
+      lead_agent: writer
+      description: Final preparation for submission
+
+      steps:
+        - id: final-review
+          agent: reviewer
+          task: execute-checklist
+          inputs:
+            - checklist: peer-review-checklist
+            - paper: revised_draft
+          outputs:
+            - final_issues
+
+        - id: polish-prose
+          agent: writer
+          task: enhance-clarity
+          inputs:
+            - final_issues
+            - revised_draft
+          outputs:
+            - polished_draft
+
+        - id: format-check
+          agent: paper-expert
+          task: format-check
+          inputs:
+            - polished_draft
+            - conference_template
+          outputs:
+            - formatted_paper
+
+        - id: submission-ready
+          agent: reviewer
+          task: final_verification
+          inputs:
+            - formatted_paper
+            - submission_checklist
+          outputs:
+            - submission_package
+
+decision_points:
+  - after_phase_1:
+      description: Continue with research direction?
+      options:
+        - proceed: Move to structure design
+        - pivot: Return to ideation
+        - abort: Research not feasible
+
+  - after_phase_3:
+      description: Content complete enough for review?
+      options:
+        - review: Move to review phase
+        - continue: Add more content
+
+  - after_phase_4:
+      description: Ready for final polish?
+      options:
+        - polish: Move to final phase
+        - major_revision: Return to content creation
+        - minor_revision: Another review cycle
+
+quality_gates:
+  - research_feasibility:
+      phase: 1
+      criteria:
+        - Novel research question
+        - Feasible approach
+        - Data availability
+
+  - content_completeness:
+      phase: 3
+      criteria:
+        - All sections drafted
+        - Technical accuracy
+        - Sufficient depth
+
+  - review_approval:
+      phase: 4
+      criteria:
+        - No major issues
+        - Clear contributions
+        - Well-structured
+
+  - submission_readiness:
+      phase: 5
+      criteria:
+        - Conference compliance
+        - All checklists passed
+        - Team consensus
+
+parallel_activities:
+  - literature_monitoring:
+      throughout: all_phases
+      agent: researcher
+      description: Monitor for new related work
+
+  - figure_creation:
+      during: [phase_3, phase_4]
+      agent: writer
+      description: Create and refine figures

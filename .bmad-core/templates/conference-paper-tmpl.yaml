@@ -1,0 +1,306 @@
+template:
+  id: conference-paper-template-v1
+  name: Data Science Conference Paper Template
+  version: 1.0
+  customizable: true # Users can modify this template for specific conferences
+  output:
+    format: markdown
+    filename: "papers/{{paper_id}}/{{conference}}-paper.md"
+    title: "{{paper_title}}"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+metadata:
+  - id: paper-info
+    title: Paper Information
+    instruction: Gather basic paper metadata
+    fields:
+      - paper_id: Unique identifier for this paper
+      - paper_title: Full paper title
+      - conference: Target conference (NeurIPS, ICML, KDD, etc.)
+      - submission_date: Target submission deadline
+      - page_limit: Conference page limit
+      - authors: List of authors and affiliations
+      - keywords: 3-5 keywords
+      - track: Conference track/area if applicable
+
+sections:
+  - id: title-block
+    title: Title and Author Block
+    instruction: |
+      Format according to conference requirements. Include:
+      - Paper title (impactful and descriptive)
+      - Author names and affiliations
+      - Contact information
+      - Conference submission details
+    template: |
+      # {{paper_title}}
+
+      {{authors}}
+
+      **Abstract ID:** {{paper_id}}
+      **Conference:** {{conference}}
+      **Track:** {{track}}
+      **Keywords:** {{keywords}}
+
+  - id: abstract
+    title: Abstract
+    owner: writer
+    editors: [writer, reviewer]
+    instruction: |
+      Write a compelling abstract (150-250 words) that:
+      1. States the problem and its importance
+      2. Identifies the gap/limitation addressed
+      3. Describes the key contribution/approach
+      4. Highlights main results
+      5. Notes impact/implications
+
+      Use active voice and avoid citations.
+    elicit: true
+    template: |
+      **Abstract**
+
+      {{abstract_content}}
+
+  - id: introduction
+    title: Introduction
+    owner: writer
+    editors: [writer, researcher, reviewer]
+    instruction: |
+      Create an engaging introduction that:
+      1. Opens with a hook (impact/challenge/surprise)
+      2. Provides problem context and motivation
+      3. Clearly states the specific problem
+      4. Outlines your approach and key insight
+      5. Lists concrete contributions
+      6. Provides paper organization
+
+      Target length: 1-1.5 pages
+    elicit: true
+    sections:
+      - id: intro-hook
+        title: Opening Hook
+        template: |
+          {{hook_content}}
+      - id: problem-context
+        title: Problem Context
+        template: |
+          {{context_content}}
+      - id: contributions
+        title: Contributions
+        template: |
+          We make the following contributions:
+
+          1. **{{contribution_1_title}}**: {{contribution_1_description}}
+          2. **{{contribution_2_title}}**: {{contribution_2_description}}
+          3. **{{contribution_3_title}}**: {{contribution_3_description}}
+
+  - id: related-work
+    title: Related Work
+    owner: researcher
+    editors: [researcher, writer, reviewer]
+    instruction: |
+      Survey relevant literature organized by:
+      1. Approach categories
+      2. Chronological development
+      3. Technique families
+
+      Position your work relative to existing methods.
+      Target length: 0.75-1 page
+    elicit: true
+    template: |
+      ## Related Work
+
+      ### {{category_1_name}}
+      {{category_1_discussion}}
+
+      ### {{category_2_name}}
+      {{category_2_discussion}}
+
+      ### Positioning Our Work
+      {{positioning_statement}}
+
+  - id: method
+    title: Method/Approach
+    owner: writer
+    editors: [writer, researcher, reviewer]
+    instruction: |
+      Present your technical approach:
+      1. Problem formulation with notation
+      2. Intuition and key insights
+      3. Detailed algorithm/method
+      4. Theoretical properties
+      5. Implementation details
+
+      Balance rigor with clarity.
+      Target length: 2-3 pages
+    elicit: true
+    sections:
+      - id: problem-formulation
+        title: Problem Formulation
+        template: |
+          ### Problem Formulation
+
+          {{notation_definitions}}
+
+          {{formal_problem_statement}}
+      - id: approach-overview
+        title: Our Approach
+        template: |
+          ### Our Approach
+
+          {{approach_intuition}}
+
+          {{key_insights}}
+      - id: algorithm
+        title: Algorithm Details
+        type: algorithm
+        template: |
+          ```
+          Algorithm 1: {{algorithm_name}}
+          {{algorithm_content}}
+          ```
+      - id: analysis
+        title: Theoretical Analysis
+        template: |
+          ### Analysis
+
+          {{theoretical_properties}}
+
+  - id: experiments
+    title: Experiments
+    owner: writer
+    editors: [writer, researcher, reviewer]
+    instruction: |
+      Design comprehensive experiments:
+      1. Experimental setup and datasets
+      2. Baseline methods and metrics
+      3. Main results with statistical significance
+      4. Ablation studies
+      5. Analysis and insights
+
+      Target length: 2-2.5 pages
+    elicit: true
+    sections:
+      - id: setup
+        title: Experimental Setup
+        template: |
+          ### Experimental Setup
+
+          **Datasets**: {{datasets_description}}
+
+          **Baselines**: {{baselines_description}}
+
+          **Metrics**: {{metrics_description}}
+
+          **Implementation**: {{implementation_details}}
+      - id: results
+        title: Results
+        template: |
+          ### Results
+
+          {{main_results_narrative}}
+
+          {{results_tables_figures}}
+      - id: ablations
+        title: Ablation Studies
+        template: |
+          ### Ablation Studies
+
+          {{ablation_studies}}
+      - id: analysis
+        title: Analysis
+        template: |
+          ### Analysis
+
+          {{results_analysis}}
+
+  - id: discussion
+    title: Discussion
+    owner: writer
+    editors: [writer, researcher, reviewer]
+    instruction: |
+      Provide thoughtful discussion:
+      1. Implications of results
+      2. When method works best/worst
+      3. Limitations and failure cases
+      4. Future directions
+
+      Be honest about limitations.
+      Target length: 0.5 pages
+    elicit: true
+    template: |
+      ## Discussion
+
+      {{implications}}
+
+      **Limitations**: {{limitations}}
+
+      **Future Work**: {{future_directions}}
+
+  - id: conclusion
+    title: Conclusion
+    owner: writer
+    editors: [writer, reviewer]
+    instruction: |
+      Concise conclusion that:
+      1. Restates the problem and approach
+      2. Summarizes key findings
+      3. Notes broader impact
+
+      No new information here.
+      Target length: 0.3-0.5 pages
+    elicit: true
+    template: |
+      ## Conclusion
+
+      {{conclusion_content}}
+
+  - id: references
+    title: References
+    owner: writer
+    editors: [writer, reviewer]
+    instruction: |
+      Format references according to conference style:
+      - Check citation style (numbered, author-year)
+      - Ensure all citations are referenced
+      - Include recent relevant work
+      - Verify formatting consistency
+    template: |
+      ## References
+
+      {{references_list}}
+
+  - id: appendix
+    title: Appendix (if allowed)
+    owner: writer
+    editors: [writer, researcher]
+    condition: Conference allows supplementary material
+    instruction: |
+      Include supplementary material:
+      - Extended proofs
+      - Additional experiments
+      - Implementation details
+      - Dataset descriptions
+    template: |
+      ## Appendix
+
+      {{appendix_content}}
+
+  - id: checklist
+    title: Submission Checklist
+    instruction: Verify all conference requirements are met
+    type: checklist
+    items:
+      - Within page limit
+      - Follows formatting guidelines
+      - Anonymous (if required)
+      - Includes all required sections
+      - Citations complete and formatted
+      - Figures/tables referenced
+      - Supplementary material prepared
+      - Reproducibility statement included
+      - Ethics statement (if required)
+      - PDF/A compliant

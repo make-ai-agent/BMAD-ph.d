@@ -1,0 +1,123 @@
+team:
+  id: team-paper-writing
+  name: Ph.D. Paper Writing Team
+  version: 1.0
+  description: Specialized team for writing high-quality data science conference papers
+  icon: 📚
+
+agents:
+  - researcher:
+      role: Lead Researcher
+      responsibilities:
+        - Research ideation and hypothesis generation
+        - Literature review and gap analysis
+        - Experimental design
+        - Theoretical foundations
+      primary_tasks:
+        - research-ideation
+        - analyze-gaps
+        - generate-hypothesis
+      collaborates_with:
+        - analyst # For data-driven insights
+        - paper-expert # For research direction alignment
+
+  - paper-expert:
+      role: Paper Architect
+      responsibilities:
+        - Paper structure optimization
+        - Narrative flow design
+        - Conference compliance
+        - Section planning
+      primary_tasks:
+        - paper-structure-design
+        - optimize-flow
+        - format-check
+      collaborates_with:
+        - architect # For system design papers
+        - researcher # For content planning
+
+  - reviewer:
+      role: Quality Assurance
+      responsibilities:
+        - Content validation
+        - Methodology verification
+        - Academic standards compliance
+        - Constructive feedback
+      primary_tasks:
+        - content-review
+        - peer-review-checklist
+        - research-quality-checklist
+      collaborates_with:
+        - all agents # Reviews everyone's work
+
+  - writer:
+      role: Lead Writer
+      responsibilities:
+        - Academic prose creation
+        - Technical writing
+        - Citation management
+        - Clarity optimization
+      primary_tasks:
+        - academic-writing
+        - write-section
+        - enhance-clarity
+      collaborates_with:
+        - dev # For implementation details
+        - researcher # For technical accuracy
+
+existing_agent_roles:
+  - analyst:
+      role: Data Analysis Support
+      contribution: Provides data-driven insights for research
+      when_engaged: During research ideation and results analysis
+
+  - architect:
+      role: System Design Support
+      contribution: Helps structure system architecture sections
+      when_engaged: For papers involving system design
+
+  - dev:
+      role: Implementation Support
+      contribution: Provides technical implementation details
+      when_engaged: When writing method and implementation sections
+
+workflows:
+  default: conference-paper-workflow
+  available:
+    - conference-paper-workflow
+    - quick-paper-review
+    - literature-survey
+
+commands:
+  - help: Show all team and agent commands
+  - start-paper: Begin the conference paper workflow with guided setup
+  - status: Show current paper project status and active phase
+  - team-status: Display which agents are active and their current tasks
+  - switch-workflow: Change to a different workflow (quick-review, literature-survey)
+  - paper-dashboard: Show overview of all paper projects
+
+tasks:
+  - start-paper.md # Handles paper project initialization
+  - paper-status.md # Displays project status dashboard
+
+activation:
+  command: "*activate team-paper-writing"
+  initialization:
+    - Load all team agents
+    - Set up paper workspace
+    - Initialize workflow
+  greeting: |
+    📚 **Ph.D. Paper Writing Team Activated!**
+
+    Team Members:
+    - 🔬 Prof. Kown (Researcher) - Research strategy & ideation
+    - 📐 Dr. Marcus (Paper Expert) - Paper structure & flow
+    - 🔍 Dr. Elena (Reviewer) - Quality assurance
+    - ✍️ Dr. James (Writer) - Academic writing
+
+    Supporting Cast:
+    - 📊 Analyst - Data insights
+    - 🏗️ Architect - System design
+    - 💻 Dev - Implementation details
+
+    Use `*help` to see available commands or `*start-paper` to begin!

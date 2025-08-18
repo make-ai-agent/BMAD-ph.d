@@ -1,0 +1,185 @@
+template:
+  id: related-work-template-v1
+  name: Related Work Section Template
+  version: 1.0
+  customizable: true
+  output:
+    format: markdown
+    filename: "papers/{{paper_id}}/sections/related-work.md"
+    title: "Related Work - {{paper_title}}"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+sections:
+  - id: overview
+    title: Related Work Overview
+    instruction: |
+      Plan the organization of your related work section:
+      1. Identify 3-4 main themes/categories
+      2. Decide on organization (by method, chronology, or application)
+      3. Determine positioning strategy
+      4. Estimate paragraph count per category
+    elicit: true
+    template: |
+      ## Related Work
+
+      _Organization: {{organization_approach}}_
+      _Total length target: {{target_paragraphs}} paragraphs_
+
+  - id: category-1
+    title: "{{category_1_name}}"
+    instruction: |
+      For the first category of related work:
+      1. Provide category overview (1-2 sentences)
+      2. Discuss 3-5 key papers chronologically
+      3. For each paper note:
+         - Core contribution
+         - Strengths
+         - Limitations relevant to your work
+      4. End with gap identification
+    elicit: true
+    template: |
+      ### {{category_1_name}}
+
+      {{category_1_overview}}
+
+      {{author_1_year}} introduced {{method_1}}, which {{contribution_1}}. 
+      While effective for {{strength_1}}, this approach {{limitation_1}}.
+
+      Building on this, {{author_2_year}} proposed {{method_2}} to address {{addressed_issue}}.
+      Their method {{contribution_2}}, but {{limitation_2}}.
+
+      More recently, {{author_3_year}} developed {{method_3}}, achieving {{achievement_3}}.
+      However, {{limitation_3}}.
+
+      {{category_1_gap_statement}}
+
+  - id: category-2
+    title: "{{category_2_name}}"
+    instruction: |
+      For the second category:
+      1. Provide category overview
+      2. Discuss 3-5 key papers
+      3. Show progression of ideas
+      4. Identify remaining challenges
+    elicit: true
+    template: |
+      ### {{category_2_name}}
+
+      {{category_2_overview}}
+
+      {{category_2_detailed_discussion}}
+
+      {{category_2_gap_statement}}
+
+  - id: category-3
+    title: "{{category_3_name}}"
+    instruction: |
+      For the third category (if needed):
+      1. Focus on most relevant recent work
+      2. Draw connections to your approach
+      3. Highlight what's missing
+    elicit: true
+    condition: Three or more categories identified
+    template: |
+      ### {{category_3_name}}
+
+      {{category_3_content}}
+
+  - id: concurrent-work
+    title: Concurrent and Recent Work
+    instruction: |
+      Acknowledge very recent or concurrent work:
+      1. Papers from last 6 months
+      2. Concurrent submissions
+      3. Recent preprints
+      Brief mentions with key differences
+    template: |
+      ### Concurrent Work
+
+      During the preparation of this work, {{concurrent_work_discussion}}.
+
+  - id: positioning
+    title: Positioning Our Work
+    instruction: |
+      Clearly position your contribution:
+      1. Summarize key gaps identified
+      2. State how your work differs
+      3. Highlight novel aspects
+      4. Acknowledge what you build upon
+
+      This is critical for reviewers!
+    elicit: true
+    template: |
+      ### Positioning Our Work
+
+      The works discussed above {{summary_of_limitations}}.
+
+      In contrast, our approach {{key_differences}}. 
+
+      Specifically, we {{novel_aspects}}.
+
+      While building on insights from {{acknowledged_foundations}}, 
+      we are the first to {{unique_contribution}}.
+
+  - id: organization-patterns
+    title: Organization Patterns Reference
+    instruction: |
+      Common organization patterns:
+
+      **By Method Type:**
+      - Optimization-based approaches
+      - Learning-based approaches  
+      - Hybrid methods
+
+      **By Problem Aspect:**
+      - Methods addressing scalability
+      - Methods addressing accuracy
+      - Methods addressing interpretability
+
+      **By Application Domain:**
+      - Computer vision applications
+      - NLP applications
+      - Multi-modal applications
+
+      **Chronological:**
+      - Classical methods (pre-2010)
+      - Deep learning era (2010-2020)
+      - Recent advances (2020-present)
+    type: reference
+
+  - id: citation-patterns
+    title: Citation Pattern Examples
+    instruction: |
+      Effective citation patterns:
+
+      **Single work:** "Smith et al. [15] demonstrated..."
+
+      **Multiple similar:** "Several works [12, 15, 23] have explored..."
+
+      **Contrasting:** "While [15] focuses on X, [23] addresses Y..."
+
+      **Building progression:** "Early work [5] established... 
+      This was extended by [12] to include... 
+      Most recently, [28] achieved..."
+
+      **Limitation noting:** "Despite success in X [15], 
+      existing methods struggle with Y."
+    type: reference
+
+checklist:
+  - id: related-work-quality
+    title: Related Work Quality Checklist
+    items:
+      - Covers all major relevant papers
+      - Recent papers included (last 2 years)
+      - Organized logically
+      - Smooth transitions between topics
+      - Clear positioning statement
+      - Appropriate citation density
+      - No excessive self-citation
+      - Respectful tone throughout
+      - Identifies clear gaps
+      - Motivates your approach
