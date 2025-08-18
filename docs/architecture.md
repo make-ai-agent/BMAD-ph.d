@@ -14,7 +14,7 @@ This is an extension of the existing BMAD-core framework. We'll be adding new ag
 
 | Date       | Version | Description                                       | Author              |
 | ---------- | ------- | ------------------------------------------------- | ------------------- |
-| 2024-12-28 | 1.0     | Initial architecture for Ph.D. Paper Writing Team | Winston (Architect) |
+| 2025-08-18 | 1.0     | Initial architecture for Ph.D. Paper Writing Team | Winston (Architect) |
 
 ## High Level Architecture
 
