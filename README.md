@@ -1,6 +1,6 @@
 # BMAD-ph.d
 
-A powerful AI-assisted development framework featuring the Business-Minded Application Development (BMAD) core system with specialized extensions.
+A powerful AI-assisted development framework featuring the BMad core system with specialized extensions.
 
 ## 🚀 Latest Addition: Ph.D. Paper Writing Team
 
