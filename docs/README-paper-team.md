@@ -6,7 +6,7 @@ The Ph.D. Paper Writing Team is an extension of the BMAD framework designed to h
 
 ## Team Members
 
-### 🔬 Prof. Kown - Research Strategy & Ideation Expert
+### 🔬 Prof. Kwon - Research Strategy & Ideation Expert
 
 - **Role**: Lead researcher who generates novel research questions
 - **Expertise**: Literature analysis, hypothesis generation, experimental design
