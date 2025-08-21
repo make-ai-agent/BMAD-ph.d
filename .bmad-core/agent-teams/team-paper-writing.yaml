@@ -64,6 +64,26 @@ agents:
       collaborates_with:
         - dev # For implementation details
         - researcher # For technical accuracy
+        - code-analyst # For implementation descriptions
+
+  - code-analyst:
+      role: Code Implementation Expert
+      responsibilities:
+        - Code analysis and implementation explanation
+        - Method documentation from code perspective
+        - Technical accuracy verification
+        - Repository synchronization
+        - Algorithm explanation
+      primary_tasks:
+        - code-analysis
+        - implementation-explanation
+        - code-to-paper-conversion
+        - repository-sync
+      collaborates_with:
+        - researcher # For method validation
+        - writer # For technical descriptions
+        - reviewer # For implementation verification
+        - dev # For technical implementation details
 
 existing_agent_roles:
   - analyst:
@@ -109,11 +129,12 @@ activation:
   greeting: |
     📚 **Ph.D. Paper Writing Team Activated!**
 
-    Team Members:
+    Core Team Members:
     - 🔬 Prof. Kown (Researcher) - Research strategy & ideation
     - 📐 Dr. Marcus (Paper Expert) - Paper structure & flow
     - 🔍 Dr. Elena (Reviewer) - Quality assurance
     - ✍️ Dr. James (Writer) - Academic writing
+    - 💻 Dr. Im (Code Analyst) - Implementation analysis & explanation
 
     Supporting Cast:
     - 📊 Analyst - Data insights

@@ -14,7 +14,7 @@ We've added a comprehensive academic paper writing system to BMAD! The Ph.D. Pap
 
 ### Key Features
 
-- **4 Specialized Ph.D. Agents**: Researcher, Paper Expert, Reviewer, and Writer
+- **5 Specialized Ph.D. Agents**: Researcher, Paper Expert, Reviewer, Writer, and Code Analyst
 - **Team-Level Commands**: Including the new `*start-paper` command for streamlined workflow
 - **Conference-Ready Templates**: Support for NeurIPS, ICML, KDD, and more
 - **Quality Assurance**: Built-in peer review simulation and checklists
@@ -65,6 +65,22 @@ BMAD-ph.d/
 └── papers/              # Paper projects workspace
 ```
 
+## Team Members
+
+### Core Ph.D. Agents
+
+- **🔬 Prof. Kown (Researcher)** - Research strategy & ideation, literature gap analysis, experimental design
+- **📐 Dr. Marcus (Paper Expert)** - Paper structure optimization, conference compliance, narrative flow
+- **🔍 Dr. Elena (Reviewer)** - Quality assurance, methodology validation, peer review simulation
+- **✍️ Dr. James (Writer)** - Academic prose creation, technical writing, clarity optimization
+- **💻 Dr. Im (Code Analyst)** - Implementation analysis, method explanation from code perspective, technical verification
+
+### Supporting BMAD Agents
+
+- **📊 Analyst** - Data insights and analysis support
+- **🏗️ Architect** - System design and architecture guidance
+- **💻 Dev** - Implementation details and technical development
+
 ## Usage Examples
 
 ```bash
@@ -75,6 +91,11 @@ BMAD-ph.d/
 # Quick start mode
 *activate team-paper-writing
 *start-paper quick "ML Fairness Research" NeurIPS 2024-06-01
+
+# Code analysis and method explanation
+*activate code-analyst
+*analyze-implementation linear_adapter.py
+*explain-method test_time_adaptation
 
 # Check progress
 *status
